@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     int matchCounter=0;
     int []performance={-1,-1,-1,-1,-1,-1}; //score of a game is updated in this array
     int []score={-1,-1,-1}; //score of each match is updated in this array. A total of three matches in a game
-    String operators[]={"+","-","*","/"};
+    String[] operators ={"+","-","*","/"};
     int correctButton=0; //which button will have the correct answer (tag of that button)
-    Random random=new Random(); //You will generate randdom alegebra questions
+    Random random=new Random(); //You will generate random algebra questions
     TextView textView2;
     Button button1,button2,button3,button4;
     public void load(View view){
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         textView2=findViewById(R.id.textView2);
         newMatch();
         sharedPreferences=this.getSharedPreferences("com.example.aiapp_2022", Context.MODE_PRIVATE);
-        int[][]dataFrame=dataPrep(); //dataPrep function returns a two-dimenssional array
+        int[][]dataFrame=dataPrep(); //dataPrep function returns a two-dimensional array
         double slope=LR.getSlope(dataFrame); //LR class, which provides slope on invoking getSlope
         new AlertDialog.Builder(this)
                // .setIcon() //your custom icon
@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
         String operator = operators[random.nextInt(4)];
         textView2.setText(operand1 + operator + operand2);
 
-      // Your code here, to diplay correct and incorrect options on the buttons
+      // Your code here, to display correct and incorrect options on the buttons
 
-        if(matchCounter==3){    // if three matches are completed updatee the perfomrance in sharedpreferences
+        if(matchCounter==3){    // if three matches are completed update the performance in shared preferences
 
             matchCounter=0;
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     public int[][] dataPrep() {
         int[] data = new Gson().fromJson((sharedPreferences.getString("data", null)), performance.getClass());
         Log.i("data", Arrays.toString(data)); //this is how you display arrays in Logcat, for debugging
-        int dataFrame[][] = new int[6][2]; //creating a dataframe of two columns and six rows for regresson purpose
+        int dataFrame[][] = new int[6][2]; //creating a dataframe of two columns and six rows for regression purpose
         if(data==null)
             return null;
         for (int i = 0; i < data.length; i++) {
